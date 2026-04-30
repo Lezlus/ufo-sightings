@@ -6,7 +6,7 @@ export const ufoCardValidationSchema = z.object({
   audio_url: z.string(),
   image_url: z.string(),
   title: z.string(),
-  description: z.string(),
+  description: z.string().default(""),
 });
 
 export const ufoCardArrayValidationSchema = z.array(ufoCardValidationSchema);

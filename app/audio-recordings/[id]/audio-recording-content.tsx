@@ -8,6 +8,7 @@ import { Image as ChakraImage } from "@chakra-ui/react";
 import { LuPlay, LuPause } from "react-icons/lu";
 import RecordingCardSkeleton from '../AudioRecordingContentSkeleton';
 import AudioRecordingContentArrow from "./audio-recording-content-arrow";
+import "../../styles/ufo-card-styles.scss";
 
 interface AudioRecordingContentProps {
   id: string
@@ -136,7 +137,7 @@ export function AudioRecordingContent({ id }: { id: string }) {
       </Box>
       <ViewTransition enter={"slide-up"} name={`recording-${id}`}>
         {recordingData && (
-        <>
+        <div className="card-display">
           <Flex
             onMouseMove={handleGlobalMouseMove}
             direction={'column'}
@@ -310,14 +311,21 @@ export function AudioRecordingContent({ id }: { id: string }) {
                 >
                   File ID: {`${id}`.slice(0, 4)}
                 </Text>
-                <Text
-                  fontFamily="'Courier New', Courier, monospace"
-                  fontSize={'xs'}
-                  color={'blackAlpha.800'}
-                  lineHeight={'short'}
+                <Box
+                  h={"120px"}
+                  overflowY={"scroll"}
                 >
-                  {recordingData.description}
-                </Text>
+                  <Text
+                    fontFamily="'Courier New', Courier, monospace"
+                    fontSize={'xs'}
+                    color={'blackAlpha.800'}
+                    lineHeight={'short'}
+                    whiteSpace={"pre-wrap"}
+                    wordBreak={"break-word"}
+                  >
+                    {recordingData.description}
+                  </Text>
+                </Box>
                 <Flex
                   cursor={'pointer'}
                   w={'full'}
@@ -350,7 +358,7 @@ export function AudioRecordingContent({ id }: { id: string }) {
             backgroundImage="url('https://www.transparenttextures.com/patterns/stardust.png')" // Or a local noise SVG
             zIndex={2}
           />
-        </>
+        </div>
         )}
       </ViewTransition>
       <Box>

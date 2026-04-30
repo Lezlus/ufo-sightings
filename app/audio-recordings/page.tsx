@@ -6,6 +6,7 @@ import { Badge, Box, Flex, Grid, Text } from "@chakra-ui/react";
 import { Image as ChakraImage } from "@chakra-ui/react";
 import { getUfoCards } from '../actions/ufo-card-actions';
 import type { UfoCardTypeArray } from "@/types";
+import "../styles/ufo-card-styles.scss";
 
 interface RecordingCardProps {
   imageURL: string;
@@ -134,7 +135,7 @@ export default function AudioRecording() {
   }, [])
   console.log(awsCdn);
   return (
-    <Grid justifyContent={'center'} templateColumns={'repeat(3, 1fr)'} gap={3}>
+    <Grid className="card-gallery" justifyContent={'center'} templateColumns={'repeat(3, 1fr)'} gap={3}>
       {audioRecordingData.map(recording => (
         <ViewTransition key={recording.id}>
           <RecordingCard 
