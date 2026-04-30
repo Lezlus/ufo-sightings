@@ -1,0 +1,86 @@
+@import 'colors';
+
+body {
+  background-color: $bg-color;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  color: $primary-text !important;
+  background-color: $bg-color !important;
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  a {
+    color: $primary-text !important;
+  }
+}
+
+main {
+  height: 100vh;
+}
+
+.map-grid {
+  .data-card {
+    // background-color: $bg-color !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: $primary-text !important;
+  }
+
+  .context-card {
+    // background-color: $bg-color !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: $primary-text !important;
+  }
+
+  .ufo-pulse-marker {
+    width: 12px;
+    height: 12px;
+    background-color: $ufo-blue; /* Your theme blue */
+    border: 2px solid white;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 0 10px rgba($ufo-blue, 0.8);
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      background-color: $ufo-blue;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: ufo-glow-pulse $pulse-duration infinite ease-out;
+    }
+  }
+
+  @keyframes ufo-glow-pulse {
+    0% {
+      width: 12px;
+      height: 12px;
+      opacity: 0.8;
+    }
+    100% {
+      width: $max-pulse-size;
+      height: $max-pulse-size;
+      opacity: 0;
+    }
+  }
+}
+
+@keyframes flicker {
+  0% { opacity: 0.97; }
+  5% { opacity: 0.95; }
+  10% { opacity: 0.9; }
+  15% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}

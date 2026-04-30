@@ -1,0 +1,36 @@
+// @import "tailwindcss";
+// @import "./styles/_colors.scss";
+
+// @theme {
+//   --color-brand-bg: #{$bg-color};
+//   --color-brand-text: #{$primary-text};
+// }
+
+// /* // 2. Use @layer base for standard HTML tags */
+// @layer base {
+//   body {
+//     background-color: var(--color-brand-bg);
+//     color: var(--color-brand-text);
+//   }
+
+//   main {
+//     height: 100vh;
+//   }
+// }
+
+// /* // 3. Keep .navbar in SCSS but use Tailwind's @apply for the properties */
+// @layer components {
+//   .navbar {
+//     @apply sticky top-0 z-[999] backdrop-blur-md;
+    
+//     /* Using your variables directly for overrides */
+//     background-color: var(--color-brand-bg) !important;
+//     color: var(--color-brand-text) !important;
+//     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+//     a {
+//       color: var(--color-brand-text) !important;
+//       @apply transition-colors hover:opacity-80;
+//     }
+//   }
+// }
