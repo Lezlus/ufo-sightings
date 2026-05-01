@@ -220,9 +220,12 @@ export default function MapPage() {
 
   useEffect(() => {
     return () => {
-      mapRef.current?.getMap().remove();
-    }
-  })
+      const map = mapRef.current?.getMap();
+      if (map) {
+        map.remove();
+      }
+    };
+  }, []);
 
   useEffect(() => {
     const getInitialBlipCount = async () => {
