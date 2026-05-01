@@ -86,7 +86,7 @@ export default function Home() {
               <Text>
                 Instead of presenting the story as a straightforward play, the
                 Mercury Theatre team staged much of it as a sequence of urgent
-                news bulletins. Listeners heard dance music interrupted by
+                news bulletins. Listeners heard
                 reports of strange explosions on Mars, an object landing near
                 Grover’s Mill, New Jersey, and terrifying descriptions of
                 Martian machines attacking civilians.
@@ -238,7 +238,7 @@ export default function Home() {
                   </Text>
                   , one of the foundational alien-invasion novels.{" "}
                   <ChakraLink href={sources[3].url} color="orange.300" target="_blank">
-                    [ChakraLink To PDF]
+                    [Link To PDF]
                   </ChakraLink>
                 </Text>
               </Box>
@@ -295,7 +295,7 @@ export default function Home() {
                 <Text color="gray.300">
                   The broadcast shows why audiences need context: source,
                   format, timing, and verification all affect how information is
-                  understood.
+                  understood. Espicially now in the age of AI
                 </Text>
               </Box>
 
