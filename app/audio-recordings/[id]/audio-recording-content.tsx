@@ -119,8 +119,8 @@ export function AudioRecordingContent({ id }: { id: string }) {
     setShowTranscript(!showTranscript);
     if (!captions && recordingData) {
       setIsLoadingCaptions(true);
-      // const captions = await getAudioCaptions(`https://${awsCdn}${recordingData.audio_url}`);
-      setCaptions("");
+      const captions = await getAudioCaptions(`https://${awsCdn}${recordingData.audio_url}`);
+      setCaptions(captions);
       setIsLoadingCaptions(false);
     }
     
