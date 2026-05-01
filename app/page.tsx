@@ -161,17 +161,6 @@ export default function Home() {
                   part of the performance.
                 </Text>
               </Stack>
-
-              <Box className="quote-card">
-                <Text color={'white'} fontSize={{ base: "xl", md: "2xl" }} fontFamily="Georgia, serif">
-                  “The War of the Worlds” became famous not only because of what
-                  it said, but because of how it sounded.
-                </Text>
-                <Text mt={4} color="gray.400">
-                  Its most powerful special effect was the familiar language of
-                  radio news.
-                </Text>
-              </Box>
             </SimpleGrid>
           </Box>
 
