@@ -218,6 +218,11 @@ export default function MapPage() {
   const mapRef = useRef<MapRef>(null);
   const requestRef = useRef<number>(0);
 
+  useEffect(() => {
+    return () => {
+      mapRef.current?.getMap().remove();
+    }
+  })
 
   useEffect(() => {
     const getInitialBlipCount = async () => {
