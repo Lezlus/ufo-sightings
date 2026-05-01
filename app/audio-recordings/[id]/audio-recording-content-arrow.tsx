@@ -48,6 +48,7 @@ export default function AudioRecordingContentArrow({ record, mode }: Props) {
         style={mode === 'next' ? {zIndex: '999' ,position: 'absolute', top: '50%', right: '0%', padding: '1rem', color: 'white' } : { zIndex: '999' ,position: "absolute", top: '50%', left: '0%', padding: '1rem', color: 'white' }}
       >
         <Link
+          color="white"
           href={`/audio-recordings/${record.id}`}
           transitionTypes={transitionTypes[mode]}
         >

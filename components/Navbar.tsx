@@ -21,9 +21,11 @@ export default function Navbar() {
       px="8"
     >
       <ChakraLink asChild>
+        <NextLink href={"/"}>The War of the Worlds</NextLink>
+      </ChakraLink>
+      <ChakraLink asChild>
         <NextLink href="/map">UFO Map</NextLink>
       </ChakraLink>
-      
       <ChakraLink asChild>
         <NextLink href="/audio-recordings">Audio Recordings</NextLink>
       </ChakraLink>

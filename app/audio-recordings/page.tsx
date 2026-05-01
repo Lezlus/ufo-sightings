@@ -60,12 +60,13 @@ const RecordingCard = (props: RecordingCardProps) => {
             zIndex={'10'}
             position={'absolute'}
             top={'1'}
-            right={'2'}
+            right={'1%'}
             colorScheme={'red'}
             variant={'solid'}
             fontFamily={'mono'}
+            px={'1rem'}
           >
-            {1.32} REEL
+            {id}
           </Badge>
           <Flex direction={'column'} gap={3} align={'start'}>
             <Box
@@ -77,18 +78,19 @@ const RecordingCard = (props: RecordingCardProps) => {
             >
               <ChakraImage
                 src={imageURL} 
+                className="card-gallery-img"
                 alt='Evidence'
-                filter={'sepia(0.4) contrast(1.2) brightness(0.3)'} 
-                _hover={{ filter: 'none' }}
-                transition={'filter 0.5s'}
+                // filter={'sepia(0.4) contrast(1.2) brightness(0.3)'} 
+                // _hover={{ filter: "sepia(0.4) contrast(1.2) brightness(1)" }}
+                // transition={'filter 0.5s'}
               />
-              <Box
+              {/* <Box
                 position={'absolute'}
                 inset={0}
                 background={"linear-gradient(to bottom, transparent, 50%, rgba(0, 0, 0, 0.1) 50%"}
                 backgroundSize={'100% 4px'}
                 pointerEvents={'none'}
-              />
+              /> */}
             </Box>
             <Flex direction={'column'} align={'start'} gap={0} w='full'>
               <Text
@@ -118,6 +120,7 @@ const RecordingCard = (props: RecordingCardProps) => {
         </Box>
       </ViewTransition>
     </Link>
+
   )
 }
 
@@ -135,16 +138,18 @@ export default function AudioRecording() {
   }, [])
   console.log(awsCdn);
   return (
-    <Grid className="card-gallery" justifyContent={'center'} templateColumns={'repeat(3, 1fr)'} gap={3}>
-      {audioRecordingData.map(recording => (
-        <ViewTransition key={recording.id}>
-          <RecordingCard 
-            imageURL={`https://${awsCdn}${recording.image_url}`} 
-            audioURL={`https://${awsCdn}${recording.audio_url}`}
-            {...recording}
-          />
-        </ViewTransition>
-      ))}
-    </Grid>
+    <Box className="border-frame">
+      <Grid p={2} className="card-gallery" justifyContent={'center'} templateColumns={'repeat(3, 1fr)'} gap={3}>
+        {audioRecordingData.map(recording => (
+          <ViewTransition key={recording.id}>
+            <RecordingCard 
+              imageURL={`https://${awsCdn}${recording.image_url}`} 
+              audioURL={`https://${awsCdn}${recording.audio_url}`}
+              {...recording}
+            />
+          </ViewTransition>
+        ))}
+      </Grid>
+    </Box>
   )
 } 

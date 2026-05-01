@@ -8,6 +8,7 @@ import { Image as ChakraImage } from "@chakra-ui/react";
 import { LuPlay, LuPause } from "react-icons/lu";
 import RecordingCardSkeleton from '../AudioRecordingContentSkeleton';
 import AudioRecordingContentArrow from "./audio-recording-content-arrow";
+import { useRouter } from "next/navigation";
 import "../../styles/ufo-card-styles.scss";
 
 interface AudioRecordingContentProps {
@@ -28,6 +29,7 @@ const formatTime = (seconds: number) => {
 
 export function AudioRecordingContent({ id }: { id: string }) {
   const awsCdn = process.env.NEXT_PUBLIC_AWS_CDN_URL;
+  const router = useRouter();
   const [recordingData, setRecordingData] = useState<UfoCardType>();
   const [captions, setCaptions] = useState<string | undefined>();
   const [isLoadingCaptions, setIsLoadingCaptions] = useState(false);
@@ -42,6 +44,7 @@ export function AudioRecordingContent({ id }: { id: string }) {
   const [ufoCards, setUfoCards] = useState<UfoCardTypeArray>([]);
   const [nextCard, setNextCard] = useState<UfoCardType>();
   const [prevCard, setPrevCard] = useState<UfoCardType>();
+  const [scrubberValue, setScrubberValue] = useState<number>(0.0);
 
   useEffect(() => {
     const getUfoData = async () => {
@@ -121,6 +124,27 @@ export function AudioRecordingContent({ id }: { id: string }) {
       setIsLoadingCaptions(false);
     }
     
+  }
+
+  const handleAudioEnd = () => {
+    if (nextCard) {
+      setAudioPlaying(false);
+      router.push(`/audio-recordings/${nextCard.id}`);
+    }
+  }
+
+  const handleOnTimeUpdate = () => {
+    if (audioRef.current) {      
+      setScrubberValue((audioRef.current.currentTime / audioRef.current.duration) * 100);
+      
+    }
+  }
+
+  const handleOnScrubChange = (value: string) => {
+    if (audioRef.current) {
+      audioRef.current.currentTime = (scrubberValue / 100) * audioRef.current.duration;
+      setScrubberValue(Number(value));
+    }
   }
 
   console.log(captions);
@@ -329,7 +353,8 @@ export function AudioRecordingContent({ id }: { id: string }) {
                 <Flex
                   cursor={'pointer'}
                   w={'full'}
-                  justify={'center'}
+                  justify={"space-between"}
+                  align={"center"}
                   pt={2}
                 >
                   <Text onClick={() => handleOpenCaptions()} fontSize={'10px'} fontFamily={'mono'} color={'red.700'} fontWeight={'bold'}>
@@ -337,15 +362,17 @@ export function AudioRecordingContent({ id }: { id: string }) {
                   </Text>
                   <Text>
                     <audio 
+                      onTimeUpdate={() => handleOnTimeUpdate()}
                       onLoadedData={() => onAudioLoaded()}
                       onPlay={() => setAudioPlaying(true)}
                       onPause={() => setAudioPlaying(false)}
-                      onEnded={() => setAudioPlaying(false)}
+                      onEnded={() => handleAudioEnd()}
                       ref={audioRef} 
                       src={`https://${awsCdn}${recordingData.audio_url}`} 
                     />
                     {pausePlayIcons()}
                   </Text>
+                  <input width={"100px"} onChange={(e) => handleOnScrubChange(e.target.value)} className="audio-scrubber" type="range" value={scrubberValue} step={"0.1"} />
                 </Flex>
               </Flex>
             </Box>
